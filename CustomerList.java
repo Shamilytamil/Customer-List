@@ -3,7 +3,11 @@ package com.customerList;
 
 public class CustomerList {
 
-	public String cusId,cusName,cusPh,cusArea,cusDis;
+	private String cusId;
+	private String cusName;
+	private String cusPh;
+	private String cusArea;
+	private String cusDis;
 
 	public String getCusId() {
 		return cusId;
