@@ -1,5 +1,6 @@
 package com.customerList;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 public class Test {
 	public static void main (String[] args) {
@@ -56,10 +57,24 @@ public class Test {
 		cs.add(c6);
 		cs.add(c7);
 		//Map<String,List<CustomerList>> groupbyarea = cs.stream().collect(Collectors.groupingBy(CustomerList ->CustomerList.getCusArea(),Hashmap
-		Hashtable<String,List<String>> gp = cs.stream().collect(Collectors.groupingBy(CustomerList ->CustomerList.getCusArea(),Hashtable::new,Collectors.mapping(CustomerList::getCusName,Collectors.toList())));
-		System.out.println(gp);
+		//Map<String,List<String>> gp = cs.stream().collect(Collectors.groupingBy(CustomerList ->CustomerList.getCusArea(),Hashtable::new,Collectors.mapping(CustomerList::getCusName,Collectors.toList())));
+		Map<String,Long> gp1 = cs.stream().collect(Collectors.groupingBy(CustomerList ->CustomerList.getCusArea(),HashMap::new,Collectors.mapping(CustomerList::getCusName, Collectors.counting())));
 		
-	}	
+		System.out.println(gp1);
+		
+		Set<Entry<String,Long>> entrySet = gp1.entrySet();
+		List<Entry<String,Long>> list = new ArrayList<>(entrySet);
+		Collections.sort(list,new Comparator<Entry<String,Long>>(){
+			public int compare(Entry<String, Long>o1,Entry<String, Long>o2) {
+				return o2.getValue().compareTo(o1.getValue());
+			}
+		});
+		list.forEach(s->{System.out.println(s.getKey() + ":" + s.getValue() );
+		
+		});
+			
+		}
+	}																																																					
 	
 
-}
+
