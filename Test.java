@@ -32,7 +32,7 @@ public class Test {
 		c4.setCusDis("Thanjavur");
 		CustomerList c5 = new CustomerList();
 		c5.setCusId("E5");
-		c5.setCusName("elango");
+		c5.setCusName("elango"); 
 		c5.setCusPh("84745772");
 		c5.setCusArea("Kannugudi");
 		c5.setCusDis("Thanjavur");
@@ -56,23 +56,19 @@ public class Test {
 		cs.add(c5);
 		cs.add(c6);
 		cs.add(c7);
-		//Map<String,List<CustomerList>> groupbyarea = cs.stream().collect(Collectors.groupingBy(CustomerList ->CustomerList.getCusArea(),Hashmap
-		//Map<String,List<String>> gp = cs.stream().collect(Collectors.groupingBy(CustomerList ->CustomerList.getCusArea(),Hashtable::new,Collectors.mapping(CustomerList::getCusName,Collectors.toList())));
-		Map<String,Long> gp1 = cs.stream().collect(Collectors.groupingBy(CustomerList ->CustomerList.getCusArea(),HashMap::new,Collectors.mapping(CustomerList::getCusName, Collectors.counting())));
 		
-		System.out.println(gp1);
-		
-		Set<Entry<String,Long>> entrySet = gp1.entrySet();
-		List<Entry<String,Long>> list = new ArrayList<>(entrySet);
+		HashMap<String,Long> map = cs.stream().collect(Collectors.groupingBy(CustomerList ->CustomerList.getCusArea(),HashMap::new,Collectors.mapping(CustomerList::getCusName, Collectors.counting())));
+		System.out.println(map);
+		List<Entry<String,Long>> list = new LinkedList<Entry<String,Long>>(map.entrySet());
 		Collections.sort(list,new Comparator<Entry<String,Long>>(){
 			public int compare(Entry<String, Long>o1,Entry<String, Long>o2) {
 				return o2.getValue().compareTo(o1.getValue());
 			}
 		});
-		list.forEach(s->{System.out.println(s.getKey() + ":" + s.getValue() );
+		for(Entry<String,Long> item: list) {
+			System.out.println(item);
 		
-		});
-			
+		}
 		}
 	}																																																					
 	
