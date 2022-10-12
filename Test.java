@@ -1,6 +1,7 @@
 package com.customerList;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 public class Test {
 	public static void main (String[] args) {
@@ -56,19 +57,44 @@ public class Test {
 		cs.add(c5);
 		cs.add(c6);
 		cs.add(c7);
+	
 		
-		HashMap<String,Long> map = cs.stream().collect(Collectors.groupingBy(CustomerList ->CustomerList.getCusArea(),HashMap::new,Collectors.mapping(CustomerList::getCusName, Collectors.counting())));
-		System.out.println(map);
-		List<Entry<String,Long>> list = new LinkedList<Entry<String,Long>>(map.entrySet());
-		Collections.sort(list,new Comparator<Entry<String,Long>>(){
-			public int compare(Entry<String, Long>o1,Entry<String, Long>o2) {
-				return o2.getValue().compareTo(o1.getValue());
-			}
-		});
-		for(Entry<String,Long> item: list) {
-			System.out.println(item);
+		
+	Map<String,Integer> map = new HashMap<String,Integer>();
+	int size = cs.size();
+	int num=0;
+	for(int i=0;i<=size;i++)
+	{
+		if(((CustomerList) cs).getCusArea()=="Orathanadu")
+		{
+		num=num+1;
+		map.put("Orathanadu", num);
 		
 		}
+		else if(((CustomerList) cs).getCusArea()=="Kannugudi")
+		{
+		num=num+1;
+		map.put("Kannugudi", num);
+		}
+		else if(((CustomerList) cs).getCusArea()=="Pudur")
+		{
+		num=num+1;
+		map.put("Pudur", num);
+		}
+		else {
+			
+			System.out.println("No Area Match");
+		}
+		
+	}
+	
+		for(Map.Entry<String,Integer> list: map.entrySet()) 
+		{
+			System.out.format("Key: %s, Value: %d%n",list.getKey(),list.getValue());
+		}
+	
+		
+		
 		}
 	}																																																					
 	
