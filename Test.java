@@ -3,7 +3,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
-public class Demo {
+public class Test {
 	public static void main (String[] args) {
 		
 	
