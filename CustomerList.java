@@ -1,7 +1,7 @@
 package com.customerList;
 
 
-public class CustomerList {
+public class Customer {
 
 	private String cusId;
 	private String cusName;
